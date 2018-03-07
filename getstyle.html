@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .getall{
+            background-color: dodgerblue;
+            color:white;
+            border-radius: .2em;
+            font-size:16px;
+            font-weight:bold;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+<input id="getall" class="getall" type="button" value="样式" >
+<p id="detail"></p>
+<script>
+    var oButton=document.getElementById("getall");
+    var oDetail=document.getElementById('detail');
+    var oStyle;
+    var k, html01
+    if(oButton&&oDetail){
+        oButton.onclick=function(){
+            oStyle=this.currentStyle?this.currentStyle:window.getComputedStyle(this,false);
+            k, html01='本按钮CSS属性名和属性值依次为('+!!this.currentStyle+'):'+'</br>';
+
+            if(typeof oStyle==='object') {
+                for (k in oStyle) {
+                    if (/^[a-z]/i.test(k) && oStyle[k]) {
+                        html01 = html01 + ' ' + k + ':' + oStyle[k] + ' '+'<br/>';
+                    }
+                }
+            }
+            else
+                    {
+                        html01+='无法获取CSS样式';
+                    }
+                    oDetail.innerHTML=html01;
+            }
+
+    }
+</script>
+</body>
+</html>

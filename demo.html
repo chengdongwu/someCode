@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="areaData.js"></script>
+    <script src="jquery-1.12.1.min.js"></script>
+</head>
+<body>
+    <select id="sheng">
+        <option value="0">省</option>
+    </select>
+    <select id="shi">
+        <option value="0">市</option>
+    </select>
+    <select id="xian">
+        <option value="0">县</option>
+    </select>
+    <script>
+        $(function(){
+            var sheng=areaData.sheng;
+            var $sheng=$("#sheng");
+            var $shi=$('#shi');
+            var $xian=$('#xian');
+            for(var i=0;i<sheng.length;i++)
+            {
+                var $option=$('<option value='+(i+1)+'>'+sheng[i]+'</option>>');
+                $sheng.append($option);
+            }
+            var index;
+            $sheng.change(function() {
+
+                index = this.selectedIndex - 1;
+                if(index<0){
+
+                }
+                else
+                {
+                    $shi.html('<option value="0">市</option>');
+                    $xian.html('<option value="0">县</option>');
+                    var shi=areaData.shi['a_'+index];
+                    for (var i = 0; i < shi.length; i++) {
+                        var $option=$('<option value='+(i+1)+'>'+shi[i]+'</option>>');
+                        $shi.append($option);
+                    }
+                }
+
+            });
+            $shi.change(function(){
+                var sindex=this.selectedIndex-1;
+                if(sindex<0){
+
+                }
+                else
+                {
+                    $xian.html('<option value="0">县</option>');
+                    var xian=areaData.xian['a_'+index+'_'+sindex];
+                    for(var i =0;i<xian.length;i++)
+                    {
+                        var $option=$('<option value='+(i+1)+'>'+xian[i]+'</option>');
+                        $xian.append($option);
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
